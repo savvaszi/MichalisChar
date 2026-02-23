@@ -1,15 +1,76 @@
 ---
-interface Props {
-    class?: string;
-}
-
-const { class: className } = Astro.props;
+/**
+ * Modern Footer Component
+ */
 ---
 
-<footer class:list={["px-4 py-8 border-t border-outline-light", className]}>
-    <div class="max-w-5xl mx-auto text-center">
-        <p class="text-sm text-content-lighter">
-            Built with PhantomWP
+<footer class="relative w-full bg-content text-white overflow-hidden">
+  <!-- Decorative Background -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-1/3 -left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Main Footer Content -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      {/* Brand Column */}
+      <div class="space-y-4 md:col-span-1">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="text-3xl">🍩</span>
+          <span class="font-bold text-xl">Minion Donuts</span>
+        </div>
+        <p class="text-white/70 leading-relaxed text-sm">
+          Handcrafted donuts with character, made fresh daily with premium organic ingredients.
         </p>
-    </div>
-</footer>
+        <div class="flex gap-3 pt-4">
+          {["📘", "📷", "𝕏", "▶️"].map((emoji) => (
+            <a
+              href="#"
+              class="w-10 h-10 rounded-lg bg-white/10 hover:bg-primary flex items-center justify-center transition-all duration-300 hover:scale-110 text-lg"
+            >
+              {emoji}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Quick Links */}
+      <div class="space-y-4">
+        <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+        <nav class="space-y-2">
+          {["Home", "Products", "About", "Contact", "FAQ"].map((link) => (
+            <a
+              href={`/${link.toLowerCase()}`}
+              class="text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+            >
+              <span class="group-hover:translate-x-2 transition-transform">→</span>
+              {link}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* Support */}
+      <div class="space-y-4">
+        <h3 class="font-bold text-lg mb-4">Support</h3>
+        <nav class="space-y-2">
+          {["Order Status", "Shipping Info", "Returns", "Bulk Orders", "Catering"].map((link) => (
+            <a
+              href="#"
+              class="text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+            >
+              <span class="group-hover:translate-x-2 transition-transform">→</span>
+              {link}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* Contact */}
+      <div class="space-y-4">
+        <h3 class="font-bold text-lg mb-4">Contact</h3>
+        <div class="space-y-3 text-white/70 text-sm">
+          <div class="flex gap-3 items-start group hover:text-white transition-colors cursor-pointer">
+            <span>📍</span>
+            <div>\n              <p>123 Donut Lane</p>\n              <p>Sweet City, SC 12345</p>\n            </div>\n          </div>\n          <div class="flex gap-3 items-center group hover:text-white transition-colors cursor-pointer">\n            <span>📞</span>\n            <a href=\"tel:+1234567890\">(555) 123-4567</a>\n          </div>\n          <div class=\"flex gap-3 items-center group hover:text-white transition-colors cursor-pointer\">\n            <span>📧</span>\n            <a href=\"mailto:hello@miniondonuts.com\">hello@miniondonuts.com</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- Divider -->\n    <div class=\"border-t border-white/10\"></div>\n\n    <!-- Bottom Section -->\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 items-center\">\n      {/* Payment Methods */}\n      <div class=\"flex items-center gap-4\">\n        <span class=\"text-sm text-white/70\">Secure Payment:</span>\n        <div class=\"flex gap-3\">\n          {[\"💳\", \"🏦\", \"📱\", \"🛡️\"].map((method) => (\n            <div\n              key={method}\n              class=\"w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer text-lg\"\n              title=\"Secure Payment\"\n            >\n              {method}\n            </div>\n          ))}\n        </div>\n      </div>\n\n      {/* Legal Links */}\n      <div class=\"flex flex-wrap gap-6 text-white/70 text-sm md:justify-end\">\n        <a href=\"/privacy\" class=\"hover:text-white transition-colors\">Privacy Policy</a>\n        <a href=\"/terms\" class=\"hover:text-white transition-colors\">Terms of Service</a>\n        <a href=\"/cookies\" class=\"hover:text-white transition-colors\">Cookie Policy</a>\n      </div>\n    </div>\n\n    {/* Copyright */}\n    <div class=\"mt-8 pt-8 border-t border-white/10 text-center text-white/60 text-sm\">\n      <p>\n        © {new Date().getFullYear()} Minion Donuts. Made with <span class=\"text-red-400\">❤️</span> and lots of sprinkles.\n      </p>\n    </div>\n  </div>\n</footer>\n\n<style is:global>\n  /* Footer Smooth Scroll Link Behavior */\n  html {\n    scroll-behavior: smooth;\n  }\n</style>\n

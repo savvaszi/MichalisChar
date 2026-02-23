@@ -1,0 +1,141 @@
+---
+/**
+ * About Section with Timeline and Values
+ */
+---
+
+<section class="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-br from-surface to-primary/5">
+  <!-- Decorative Elements -->
+  <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-16 animate-fade-in-up">
+      <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide">
+        📖 Our Story
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-content">
+        Made with Love & Laughter
+      </h2>
+      <p class="text-lg text-content-light max-w-2xl mx-auto">
+        From a small kitchen dream to your favorite donut shop
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Story Text -->
+      <div class="space-y-6 animate-fade-in-left">
+        <div class="space-y-4">
+          <p class="text-lg text-content-light leading-relaxed">
+            What started as a weekend project in 2020 has blossomed into a beloved community bakery. We were inspired by the joy and mischief of our favorite yellow characters, and we wanted to bring that same happiness to everyone's breakfast table.
+          </p>
+          <p class="text-lg text-content-light leading-relaxed">
+            Every single donut is handcrafted with premium ingredients, zero artificial flavors, and lots of love. We believe that life is too short for mediocre donuts.
+          </p>
+        </div>
+
+        <!-- Values Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+          {[
+            { icon: "🥚", title: "Fresh Ingredients", desc: "Sourced daily from local suppliers" },
+            { icon: "🤝", title: "Community First", desc: "Supporting local causes and events" },
+            { icon: "✨", title: "Quality Always", desc: "No shortcuts, only excellence" },
+            { icon: "🌱", title: "Sustainable", desc: "Eco-friendly packaging & practices" }
+          ].map((value, index) => (
+            <div
+              class="group p-4 rounded-xl bg-white border border-outline/20 hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1 animate-fade-in-up"
+              style={`animation-delay: ${300 + index * 100}ms`}
+            >
+              <div class="text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">{value.icon}</div>
+              <h3 class="font-bold text-content mb-1 group-hover:text-primary transition-colors">{value.title}</h3>
+              <p class="text-sm text-content-light">{value.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Timeline/Milestones -->
+      <div class="space-y-8 animate-fade-in-right">
+        <div class="relative">
+          {/* Timeline Line */}
+          <div class="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent"></div>
+
+          {/* Timeline Items */}
+          {[
+            { year: "2020", title: "The Beginning", desc: "First batch baked in a home kitchen" },
+            { year: "2021", title: "Grand Opening", desc: "Opened our first brick-and-mortar shop" },
+            { year: "2022", title: "Community Love", desc: "Reached 1,000 happy customers" },
+            { year: "2024", title: "Expansion", desc: "Multi-location growth & online ordering" }
+          ].map((milestone, index) => (
+            <div
+              class="relative pl-24 pb-8 group cursor-pointer animate-fade-in-up"
+              style={`animation-delay: ${500 + index * 100}ms`}
+            >
+              {/* Timeline Dot */}
+              <div class="absolute left-0 top-0 w-14 h-14 bg-white border-4 border-primary rounded-full flex items-center justify-center font-bold text-primary group-hover:scale-125 group-hover:shadow-lg group-hover:shadow-primary/50 transition-all duration-300">
+                {milestone.year.slice(-2)}
+              </div>
+
+              {/* Content Card */}
+              <div class="bg-white rounded-xl p-5 border border-outline/20 group-hover:border-primary/50 group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                <h3 class="text-lg font-bold text-content group-hover:text-primary transition-colors mb-1">
+                  {milestone.title}
+                </h3>
+                <p class="text-sm text-content-light">{milestone.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-left {
+    animation: fade-in-left 0.6s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: fade-in-right 0.6s ease-out;
+  }
+</style>

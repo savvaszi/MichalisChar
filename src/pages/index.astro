@@ -2,10 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Section from '../components/Section.astro';
 import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import CTASection from '../components/CTASection.astro';
+import FeaturedProducts from '../components/FeaturedProducts.astro';
+import About from '../components/About.astro';
+import Testimonials from '../components/Testimonials.astro';
+import OrderCTA from '../components/OrderCTA.astro';
+import FAQ from '../components/FAQ.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <BaseLayout title="Home">
@@ -15,11 +19,26 @@ import CTASection from '../components/CTASection.astro';
     <!-- Hero Section -->
     <Hero />
     
-    <!-- Features Section -->
-    <Features />
+    <!-- Featured Products Section -->
+    <FeaturedProducts />
     
-    <!-- CTA Section -->
-    <CTASection />
+    <!-- About Section -->
+    <About />
+    
+    <!-- Testimonials Section -->
+    <Testimonials />
+    
+    <!-- Order CTA Section -->
+    <OrderCTA />
+    
+    <!-- FAQ Section -->
+    <FAQ />
+    
+    <!-- Newsletter Section -->
+    <Newsletter />
+    
+    <!-- Contact Section -->
+    <Contact />
   </main>
   
   <Footer />

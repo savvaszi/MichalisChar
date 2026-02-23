@@ -1,0 +1,204 @@
+---
+/**
+ * FAQ Section with Accordion
+ */
+interface FAQItem {
+  id: number;
+  question: string;
+  answer: string;
+  icon: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    id: 1,
+    icon: "🍩",
+    question: "What makes your donuts special?",
+    answer: "We use only premium organic ingredients, handcraft every donut fresh daily, and never use artificial flavors or preservatives. Our Minion-inspired designs bring joy to every order!"
+  },
+  {
+    id: 2,
+    icon: "📦",
+    question: "How long do donuts stay fresh?",
+    answer: "Our donuts are best enjoyed within 48 hours of purchase. We recommend storing them in an airtight container at room temperature. This is why we guarantee freshness - we bake fresh daily!"
+  },
+  {
+    id: 3,
+    icon: "🚚",
+    question: "What's your delivery policy?",
+    answer: "We offer free delivery on orders over $30 within our service area. Standard delivery takes 2-3 business days. Express delivery (24 hours) is available for an additional fee during peak seasons."
+  },
+  {
+    id: 4,
+    icon: "💰",
+    question: "Do you offer bulk orders or catering?",
+    answer: "Absolutely! We love doing bulk orders for events, corporate gatherings, and celebrations. Contact our catering team at catering@miniondonuts.com or call for custom quotes."
+  },
+  {
+    id: 5,
+    icon: "🥜",
+    question: "Are there allergen-free options?",
+    answer: "We're committed to food safety. While we handle nuts and dairy, we offer options for common allergen concerns. Please contact us to discuss your specific needs."
+  },
+  {
+    id: 6,
+    icon: "🎂",
+    question: "Can you customize orders?",
+    answer: "Yes! We offer custom flavor combinations, special messages, and themed boxes. Minimum 24-hour notice required. Custom orders start at $2 per donut."
+  }
+];
+---
+
+<section class="relative w-full py-20 md:py-28 overflow-hidden bg-surface">
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent"></div>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-16 animate-fade-in-up">
+      <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide">
+        ❓ Questions?
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-content">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg text-content-light max-w-2xl mx-auto">
+        Everything you need to know about our delicious donuts
+      </p>
+    </div>
+
+    {/* FAQ Accordion */}
+    <div class="space-y-4" id="faq-container">
+      {faqs.map((faq, index) => (
+        <div
+          class="faq-item group animate-fade-in-up"
+          style={`animation-delay: ${index * 50}ms`}
+          data-faq-id={faq.id}
+        >
+          {/* Question */}
+          <button
+            class="faq-trigger w-full p-6 bg-white rounded-xl border border-outline/20 hover:border-primary/30 transition-all duration-300 flex items-center justify-between hover:shadow-lg hover:bg-primary/5 cursor-pointer group/trigger"
+            data-faq-trigger
+          >
+            <div class="flex items-center gap-4 text-left">
+              <span class="text-3xl group-hover/trigger:scale-125 transition-transform duration-300">
+                {faq.icon}
+              </span>
+              <h3 class="text-lg font-semibold text-content group-hover/trigger:text-primary transition-colors">
+                {faq.question}
+              </h3>
+            </div>
+            <svg
+              class="faq-icon w-6 h-6 text-primary group-hover/trigger:scale-110 transition-all duration-300 transform group-hover/trigger:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+
+          {/* Answer */}
+          <div
+            class="faq-content hidden overflow-hidden transition-all duration-300 max-h-0"
+            data-faq-content
+          >
+            <div class="p-6 bg-primary/5 text-content-light leading-relaxed border border-t-0 border-outline/20 rounded-b-xl">
+              {faq.answer}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA for More Help */}
+    <div class="mt-16 text-center animate-fade-in-up" style="animation-delay: 350ms">
+      <div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 border border-outline/20">
+        <p class="text-lg text-content-light mb-4">Still have questions?</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="group px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            Email Us
+          </button>
+          <button class="group px-6 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary/5 transition-all duration-300 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            Chat Support
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ Accordion Functionality
+  document.querySelectorAll('[data-faq-trigger]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.faq-item');
+      if (!item) return;
+
+      const content = item.querySelector('[data-faq-content]');
+      const icon = trigger.querySelector('.faq-icon');
+      const isOpen = !content?.classList.contains('hidden');
+
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherContent = otherItem.querySelector('[data-faq-content]');
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          if (otherContent && !otherContent.classList.contains('hidden')) {
+            otherContent.classList.add('hidden');
+            otherContent.style.maxHeight = '0px';
+            if (otherIcon) otherIcon.style.transform = '';
+          }
+        }
+      });
+
+      // Toggle current item
+      if (isOpen) {
+        content?.classList.add('hidden');
+        content!.style.maxHeight = '0px';
+        if (icon) icon.style.transform = '';
+      } else {
+        content?.classList.remove('hidden');
+        if (content) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .faq-content {
+    max-height: 0;
+  }
+</style>

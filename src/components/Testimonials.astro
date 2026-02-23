@@ -1,0 +1,171 @@
+---
+/**
+ * Testimonials Section with Carousel
+ */
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  avatar: string;
+  rating: number;
+  text: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "Regular Customer",
+    avatar: "👩‍💼",
+    rating: 5,
+    text: "These donuts are absolutely amazing! I grab a box every Saturday morning. My kids won't eat any other brand now."
+  },
+  {
+    id: 2,
+    name: "Mike Chen",
+    role: "Food Blogger",
+    avatar: "👨‍💻",
+    rating: 5,
+    text: "Minion Donuts completely nailed the character theme. The taste is just as impressive as the design. 10/10!"
+  },
+  {
+    id: 3,
+    name: "Lisa Martinez",
+    role: "Event Organizer",
+    avatar: "👩‍🎤",
+    rating: 5,
+    text: "We ordered 50 boxes for our corporate event. The team was professional, delivery was on time, and everyone loved them!"
+  },
+  {
+    id: 4,
+    name: "David Park",
+    role: "Coffee Shop Owner",
+    avatar: "☕",
+    rating: 5,
+    text: "Partnering with Minion Donuts was the best decision for our cafe. Our customers ask for them by name!"
+  },
+  {
+    id: 5,
+    name: "Emma Wilson",
+    role: "Parent",
+    avatar: "👩‍👧‍👦",
+    rating: 5,
+    text: "Birthday treat perfection! The custom boxes and variety pack were exactly what I needed for my daughter's party."
+  },
+];
+---
+
+<section class="relative w-full py-20 md:py-28 overflow-hidden bg-surface">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-40">
+    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+      <defs>
+        <pattern id="testimonial-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M0 0 Q25 25 50 0 T100 0" fill="none" stroke="var(--tw-colors-primary)" opacity="0.1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#testimonial-pattern)"/>
+    </svg>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-16 animate-fade-in-up">
+      <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide">
+        ⭐ What People Say
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-content">
+        Love from Our Community
+      </h2>
+      <p class="text-lg text-content-light max-w-2xl mx-auto">
+        Join thousands of happy customers enjoying Minion Donuts
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {testimonials.map((testimonial, index) => (
+        <div
+          class="group relative bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer animate-fade-in-up border border-outline/10"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          {/* Gradient Top Border */}
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+          {/* Card Content */}
+          <div class="p-8 space-y-6 h-full flex flex-col">
+            {/* Stars */}
+            <div class="flex items-center gap-1">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <svg
+                  key={i}
+                  class="w-4 h-4 text-accent fill-accent transition-all duration-300 group-hover:scale-110"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
+            </div>
+
+            {/* Quote */}
+            <p class="text-content-light leading-relaxed flex-grow italic">
+              "{testimonial.text}"
+            </p>
+
+            {/* Divider */}
+            <div class="border-t border-outline/20 group-hover:border-primary/20 transition-colors duration-300"></div>
+
+            {/* Author Info */}
+            <div class="flex items-center gap-4 pt-2">
+              <div class="text-3xl group-hover:scale-125 transition-transform duration-300">
+                {testimonial.avatar}
+              </div>
+              <div>
+                <h3 class="font-bold text-content group-hover:text-primary transition-colors">
+                  {testimonial.name}
+                </h3>
+                <p class="text-xs text-content-light">{testimonial.role}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-outline/20">
+      {[
+        { emoji: "🏆", text: "500+ 5-Star Reviews" },
+        { emoji: "✅", text: "Verified Purchases" },
+        { emoji: "🚀", text: "4.9 Average Rating" }
+      ].map((badge, index) => (
+        <div
+          class="flex flex-col items-center gap-2 p-6 rounded-xl hover:bg-white transition-all duration-300 cursor-pointer group animate-fade-in-up"
+          style={`animation-delay: ${600 + index * 100}ms`}
+        >
+          <span class="text-4xl group-hover:scale-125 transition-transform duration-300">{badge.emoji}</span>
+          <p class="font-semibold text-content text-center group-hover:text-primary transition-colors">{badge.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+</style>

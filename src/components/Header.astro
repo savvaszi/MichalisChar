@@ -8,14 +8,37 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<header class:list={["px-4 py-4", className]}>
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-        <!-- You can add your logo here -->
-        <a href="/" class="font-semibold text-lg text-content no-underline cursor-pointer">
-            My Site
+<header class:list={["sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-outline/10 transition-all duration-300", className]}>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="group flex items-center gap-2 no-underline cursor-pointer">
+            <div class="text-2xl group-hover:scale-110 transition-transform duration-300">🍩</div>
+            <span class="font-bold text-lg bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hidden sm:inline-block">
+                Minion Donuts
+            </span>
         </a>
         
         <!-- Menu Area (Right Aligned) -->
         <MainMenu />
     </div>
 </header>
+
+<script>
+  // Add scroll effect for header
+  let lastScrollTop = 0;
+  const header = document.querySelector('header');
+
+  if (header) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      
+      if (scrollTop > 100) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+  }
+</script>
